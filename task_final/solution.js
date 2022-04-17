@@ -33,28 +33,29 @@
 //    }
 // }
 
-function sendRequest(name, phone, address, goods, sum, title, count) {
-//SOS SOS! Что от меня нужно этому хачапури :) (проверочному файлу)
+function sendRequest(name, phone, address, goods, sum) {
 
-    //let data = {goods: [], order: {}};
-    //let data = {client: {name, phone},order: {address, sum}, goods: []};
+//Вы же аналитиков обучаете, ни один разработчик ничего не напишет при такой постановке 
+//(пойди туда не знаю куда и возьми не понятно что и откуда) нет ни источника и как проверить не понятно
+//я так и не поняла как описать эти титл и каунт
+    let title = goods[0].title;
+    let count = goods[0].count;
         
-    let data = {client: {name, phone},order: {address, sum}, goods: [{title, count}]};
+    let data = {client: {name, phone},order: {address, sum}, goods: [{title: title, count: count}]};
 
     let countOfGoods = data.goods.length;
 
      for (let i = 0; i < countOfGoods; i ++ ) {
-        //data.goods.push(goods[i].title);
-        data.goods.title = goods.push(goods[i].title);
-        data.goods.count = goods.push(goods[i].count);
+        
+        data.goods.push(goods[i].title,goods[i].count);
     }
 
-    data.order.address = address;
-    data.order.sum = name + phone + address + goods + sum;
+    data.order.address = "ул. "+ address.street +", дом " + address.house+", " +address.entrance+ " подъезд, "+ address.floor+" этаж, кв "+ address.flat;
 
-    data.client = 'Иван';
+    data.order.sum = sum;
 
-    //let jsonData = JSON.stringify(data);
+    data.client = name + " " + phone;
+    
     let jsonData = JSON.stringify({data});
 
     return jsonData;
