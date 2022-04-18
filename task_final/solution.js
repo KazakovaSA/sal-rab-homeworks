@@ -35,20 +35,20 @@
 
 function sendRequest(name, phone, address, goods, sum) {
 
-//Вы же аналитиков обучаете, ни один разработчик ничего не напишет при такой постановке 
-//(пойди туда не знаю куда и возьми не понятно что и откуда) нет ни источника и как проверить не понятно
-//я так и не поняла как описать эти титл и каунт
-    let title = goods[0].title;
-    let count = goods[0].count;
-        
-    let data = {client: {name, phone},order: {address, sum}, goods: [{title: title, count: count}]};
-
+//Вы пишите одну и ту же фразу, которая есть в комментарии к домашке на сайте, наверно если бы я ее поняла то сделала бы давно
+//что значит Создать объект когда речь идет о теле цикла? 
+//у меня на выходе будет столько объектов сколько раз выполнится цикл??
+   
+   // let data = {client: {name, phone},order: {address, sum}, goods: [{title: title, count: count}]};
+   let data = {goods: [] ,order: {}};
+   let data1 = {};
+   
     let countOfGoods = data.goods.length;
 
      for (let i = 0; i < countOfGoods; i ++ ) {
-        
-        data.goods.push(goods[i].title,goods[i].count);
+       data1 =  data.goods.push(goods[i].title,goods[i].count);
     }
+
 
     data.order.address = "ул. "+ address.street +", дом " + address.house+", " +address.entrance+ " подъезд, "+ address.floor+" этаж, кв "+ address.flat;
 
@@ -56,7 +56,7 @@ function sendRequest(name, phone, address, goods, sum) {
 
     data.client = name + " " + phone;
     
-    let jsonData = JSON.stringify({data});
+    let jsonData = JSON.stringify({data1});
 
     return jsonData;
 }
