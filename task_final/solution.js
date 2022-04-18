@@ -34,19 +34,16 @@
 // }
 
 function sendRequest(name, phone, address, goods, sum) {
-
-//Вы пишите одну и ту же фразу, которая есть в комментарии к домашке на сайте, наверно если бы я ее поняла то сделала бы давно
-//что значит Создать объект когда речь идет о теле цикла? 
-//у меня на выходе будет столько объектов сколько раз выполнится цикл??
    
-   // let data = {client: {name, phone},order: {address, sum}, goods: [{title: title, count: count}]};
+  
    let data = {goods: [] ,order: {}};
-   let data1 = {};
-   
-    let countOfGoods = data.goods.length;
+      
+    let countOfGoods = goods.length;
 
      for (let i = 0; i < countOfGoods; i ++ ) {
-       data1 =  data.goods.push(goods[i].title,goods[i].count);
+        let data1 = {title: goods[i].title, count: goods[i].count};
+        data.goods.push(data1);
+                         
     }
 
 
@@ -56,7 +53,7 @@ function sendRequest(name, phone, address, goods, sum) {
 
     data.client = name + " " + phone;
     
-    let jsonData = JSON.stringify({data1});
+    let jsonData = JSON.stringify({data});
 
     return jsonData;
 }
